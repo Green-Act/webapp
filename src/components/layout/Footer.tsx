@@ -1,5 +1,5 @@
 import React from "react";
-import { FaDiscord, FaTelegram, FaTwitter } from "react-icons/fa";
+import { FaDiscord, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 
 const Footer: React.FC<Record<string, never>> = () => {
   return (
@@ -7,7 +7,7 @@ const Footer: React.FC<Record<string, never>> = () => {
       <div className="flex items-center justify-center flex-1">
         <FaDiscord size={25} />
         <FaTwitter size={25} className="mx-8" />
-        <FaTelegram size={25} />
+        <FaTelegramPlane size={25} />
       </div>
       <div className="flex items-center absolute right-8">
         <img src="/polygon.svg" alt="Built on Polygon" className="mr-1" />
