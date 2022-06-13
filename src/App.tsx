@@ -7,9 +7,11 @@ function App() {
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <main className="h-[calc(100%-64px)] w-full bg-gat bg-blend-normal bg-cover bg-center bg-no-repeat">
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </main>
     </Router>
   );
 }
