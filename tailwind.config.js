@@ -10,6 +10,9 @@ module.exports = {
           gray: "#D9D9D9",
         },
       },
+      backgroundImage: {
+        gat: 'url("/public/background.png")',
+      },
     },
   },
   plugins: [],
