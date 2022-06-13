@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <main className="min-h-[calc(100%-64px)] w-full bg-gat bg-blend-normal bg-cover bg-center bg-no-repeat relative">
+      <main className="min-h-[calc(100%-64px)] w-full bg-gat bg-blend-normal bg-cover bg-center bg-no-repeat relative pb-20">
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
