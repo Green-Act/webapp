@@ -93,17 +93,17 @@ const Home: React.FC<Record<string, never>> = () => {
     },
   ];
   return (
-    <div className="h-full w-full px-12">
+    <div className="h-full w-full px-8 md:px-12">
       <h1 className="text-3xl font-bold text-center py-8">
         Understand you footprint, <span className="text-gat-green">Act</span> to
         reduce it and <span className="text-gat-green">Earn</span>!
       </h1>
-      <div className="flex items-center justify-center space-x-28">
+      <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-x-28">
         {homePageCards.map(
           ({ title, image, content, buttonText, buttonAction }, index) => {
             return (
               <div
-                className="flex flex-col items-center justify-between rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-1/3 max-w-[300px] px-12 py-5"
+                className="flex flex-col items-center justify-between rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-full md:w-1/3 md:max-w-[300px] px-12 py-5"
                 key={index}
               >
                 {title}
