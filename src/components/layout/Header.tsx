@@ -1,6 +1,10 @@
 import { useConnectWallet } from "@web3-onboard/react";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import getTrimmedHash from "../../utils/getTrimmedHash";
+import { initialize } from "../../utils/wallet";
+
+initialize();
 
 const Header: React.FC<Record<string, never>> = () => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
@@ -47,7 +51,12 @@ const Header: React.FC<Record<string, never>> = () => {
         className="border border-gat-green px-6 md:px-12 py-2 rounded-full font-bold order-2 md:order-3"
         onClick={connectWallet}
       >
-        Connect Wallet
+        {wallet
+          ? wallet.accounts[0].ens?.name ??
+            getTrimmedHash(wallet.accounts[0].address, 6)
+          : connecting
+          ? "Connecting..."
+          : "Connect Wallet"}
       </button>
     </header>
   );
