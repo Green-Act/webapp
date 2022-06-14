@@ -53,7 +53,7 @@ const Home: React.FC<Record<string, never>> = () => {
           My Green<span className="text-gat-green">Activist</span>
         </h6>
       ),
-      image: "",
+      image: "/activist.png",
       content: (
         <div className="text-xs text-center">
           <p>Choose your GreenActivist to start playing the game.</p>
