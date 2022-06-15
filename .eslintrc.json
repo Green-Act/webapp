@@ -18,5 +18,11 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {},
-  "ignorePatterns": ["**/config/*.js"]
+  "ignorePatterns": [
+    "**/config/**/*.js",
+    "**/scripts/**/*.js",
+    "./**/*.js",
+    "node_modules/",
+    "react-app-env.d.ts"
+  ]
 }
