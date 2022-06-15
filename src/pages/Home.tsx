@@ -28,7 +28,7 @@ const Home: React.FC<Record<string, never>> = () => {
           My Green<span className="text-gat-green">Activism</span>
         </h6>
       ),
-      image: "",
+      image: "/activism.png",
       content: (
         <div className="text-xs text-center">
           <p>
@@ -53,7 +53,7 @@ const Home: React.FC<Record<string, never>> = () => {
           My Green<span className="text-gat-green">Activist</span>
         </h6>
       ),
-      image: "",
+      image: "/activist.png",
       content: (
         <div className="text-xs text-center">
           <p>Choose your GreenActivist to start playing the game.</p>
@@ -77,7 +77,7 @@ const Home: React.FC<Record<string, never>> = () => {
           My Green<span className="text-gat-green">Actions</span>
         </h6>
       ),
-      image: "",
+      image: "/actions.png",
       content: (
         <div className="text-xs text-center">
           <p>
@@ -98,17 +98,17 @@ const Home: React.FC<Record<string, never>> = () => {
         Understand you footprint, <span className="text-gat-green">Act</span> to
         reduce it and <span className="text-gat-green">Earn</span>!
       </h1>
-      <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-x-28">
+      <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-x-28 md:space-y-0">
         {homePageCards.map(
           ({ title, image, content, buttonText, buttonAction }, index) => {
             return (
               <div
-                className="flex flex-col items-center justify-between rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-full md:w-1/3 md:max-w-[300px] px-12 py-5"
+                className="flex flex-col items-center rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-full md:w-1/3 md:max-w-[300px] px-12 py-5"
                 key={index}
               >
                 {title}
-                <img src={image} />
-                {content}
+                <img src={image} className="h-[130px] my-4" />
+                <div className="flex-1">{content}</div>
                 <button
                   className="border border-gat-green w-full py-1 rounded-full font-bold text-xs"
                   onClick={buttonAction}
