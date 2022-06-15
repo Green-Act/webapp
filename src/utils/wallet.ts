@@ -3,23 +3,22 @@ import injectedModule from "@web3-onboard/injected-wallets";
 import UAuth from "@uauth/js";
 import uauthBNCModule from "@uauth/web3-onboard";
 
-const uauthOptions = {
+const uauth = new UAuth({
   clientID: process.env.REACT_APP_CLIENT_ID!,
   redirectUri: process.env.REACT_APP_REDIRECT_URI!,
   fallbackIssuer: process.env.REACT_APP_FALLBACK_ISSUER!,
   scope: "openid wallet",
-};
+});
 
-const uauth = new UAuth(uauthOptions);
-
-const uauthBNCOptions = {
+const uauthOptions = {
   uauth: uauth,
   walletconnect: {
     infuraId: process.env.REACT_APP_INFURA_ID!,
   },
 };
 
-const uauthModule = uauthBNCModule(uauthBNCOptions);
+// @ts-expect-error some uauth error
+const uauthModule = uauthBNCModule(uauthOptions);
 
 let isInitialized = false;
 const injected = injectedModule();
