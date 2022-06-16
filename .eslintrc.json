@@ -17,5 +17,12 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": {}
+  "rules": {},
+  "ignorePatterns": [
+    "**/config/**/*.js",
+    "**/scripts/**/*.js",
+    "./**/*.js",
+    "node_modules/",
+    "react-app-env.d.ts"
+  ]
 }
