@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { usePlaidLink } from "react-plaid-link";
+import axios from "axios";
 
 type HomePageCard = {
   title: React.ReactElement;
@@ -9,8 +11,45 @@ type HomePageCard = {
 };
 
 const Home: React.FC<Record<string, never>> = () => {
+  // Get link token, this verifies our account credentials,
+  // the user must go through their own authentication process
+  const [linkToken, setLinkToken] = useState("");
+
+  const getLinkToken = async () => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/plaid/create-link`
+    );
+    // setting link token in local storage for now, so we can use
+    // in list transactions component.
+    // TODO: move into our global app state, once that is setup?
+    const token = response.data.link_token;
+    localStorage.setItem("link-token", token);
+    setLinkToken(token);
+  };
+
+  useEffect(() => {
+    getLinkToken();
+  }, []);
+
+  const config = {
+    token: linkToken,
+    onSuccess: async (publicToken: string) => {
+      // exchange public token for an access token, which will
+      // be stored securely on our server.
+      await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/api/plaid/exchange-token`,
+        {
+          publicToken,
+        }
+      );
+    },
+  };
+
+  const { open, ready } = usePlaidLink(config);
+
   const connectBankAccount = () => {
-    console.log("Connect bank account");
+    console.log("connecting bank account...");
+    open();
   };
 
   const chooseGreenActivist = () => {
@@ -112,6 +151,7 @@ const Home: React.FC<Record<string, never>> = () => {
                 <button
                   className="border border-gat-green w-full py-1 rounded-full font-bold text-xs"
                   onClick={buttonAction}
+                  disabled={index === 0 && !ready}
                 >
                   {buttonText}
                 </button>
