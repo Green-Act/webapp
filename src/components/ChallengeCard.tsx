@@ -22,10 +22,7 @@ const ChallengeCard: React.FC<{
         <div className="text-right ml-auto">{props.reward}</div>
         <img src="/leaf.svg" className="pl-2" />
       </div>
-      <button
-        className="border-2 border-gat-green w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2"
-        //onClick={()=>transfer()}
-      >
+      <button className="border-2 border-gat-green w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2">
         Submit!
       </button>
     </div>
