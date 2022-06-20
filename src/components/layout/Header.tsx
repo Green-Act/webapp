@@ -27,7 +27,7 @@ const Header: React.FC<Record<string, never>> = () => {
           Home
         </NavLink>
         <NavLink
-          to="/challenges"
+          to="../challenges"
           className={({ isActive }) =>
             `${
               isActive ? "bg-gat-green/10" : ""
