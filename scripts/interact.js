@@ -21,10 +21,10 @@ const greenHackTokenContract = new ethers.Contract(
   signer
 );
 
-async function reward(amount_matic, to) {
-  amount = ethers.utils.parseUnits(amount_matic, "18");
+async function reward(amount_ghk, to) {
+  amount = ethers.utils.parseUnits(amount_ghk, "18");
   const tx = await greenHackTokenContract.mint(to, amount);
-  console.log(amount_matic + " GHK have been minted for " + to);
+  console.log(amount_ghk + " GHK have been minted for " + to);
 }
 
 reward("5", "0xa4437699EA5A31E85546fcc634f46E164E2D1246");
