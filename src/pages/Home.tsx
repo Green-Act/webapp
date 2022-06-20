@@ -17,7 +17,7 @@ const Home: React.FC<Record<string, never>> = () => {
 
   const getLinkToken = async () => {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/api/plaid/create-link`
+      `${process.env.REACT_APP_SERVER_URL ?? ""}/api/plaid/create-link`
     );
     // setting link token in local storage for now, so we can use
     // in list transactions component.
