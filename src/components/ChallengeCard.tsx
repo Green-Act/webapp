@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useConnectWallet } from "@web3-onboard/react";
 
 const ChallengeCard: React.FC<{
   key: string;
@@ -8,9 +9,13 @@ const ChallengeCard: React.FC<{
   description: string;
   reward: string;
 }> = (props) => {
+  const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
+
   const getReward = async () => {
     await axios.get(
-      `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/erc20/reward`
+      `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/erc20/reward/${
+        props.reward
+      }/${wallet ? wallet.accounts[0].address : ""}`
     );
   };
 
