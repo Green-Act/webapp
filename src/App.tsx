@@ -4,18 +4,21 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import Challenges from "./pages/Challenges";
+import { AuthProvider } from "./hooks/useAuth";
 
 function App() {
   return (
     <Router>
-      <Header />
-      <main className="min-h-[calc(100%-64px)] w-full bg-gat bg-blend-normal bg-cover bg-center bg-no-repeat relative pb-20">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/challenges" element={<Challenges />} />
-        </Routes>
-        <Footer />
-      </main>
+      <AuthProvider>
+        <Header />
+        <main className="min-h-[calc(100%-64px)] w-full bg-gat bg-blend-normal bg-cover bg-center bg-no-repeat relative pb-20">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/challenges" element={<Challenges />} />
+          </Routes>
+          <Footer />
+        </main>
+      </AuthProvider>
     </Router>
   );
 }
