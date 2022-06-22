@@ -19,6 +19,27 @@ const ChallengeCard: React.FC<{
     );
   };
 
+  let button;
+  if (wallet) {
+    button = (
+      <button
+        className="border-[1px] border-gat-green w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2"
+        onClick={() => getReward()}
+      >
+        Submit!{" "}
+      </button>
+    );
+  } else {
+    button = (
+      <button
+        className="border-0 w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2"
+        disabled
+      >
+        Not Connected
+      </button>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center justify-between rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 mx-8 my-4 h-[240px] w-[240px]">
       <div className="flex flex-row justify-between border-b-[1px] border-gat-green w-full px-4 py-2 text-base font-medium">
@@ -34,12 +55,7 @@ const ChallengeCard: React.FC<{
         <div className="text-right ml-auto">{props.reward}</div>
         <img src="/leaf.svg" className="pl-2" />
       </div>
-      <button
-        className="border-2 border-gat-green w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2"
-        onClick={() => getReward()}
-      >
-        Submit!
-      </button>
+      {button}
     </div>
   );
 };
