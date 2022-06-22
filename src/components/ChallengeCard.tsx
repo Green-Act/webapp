@@ -8,6 +8,7 @@ const ChallengeCard: React.FC<{
   level: string;
   description: string;
   reward: string;
+  duration: string;
 }> = (props) => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
 
@@ -26,7 +27,7 @@ const ChallengeCard: React.FC<{
         className="border-[1px] border-gat-green w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2"
         onClick={() => getReward()}
       >
-        Submit!{" "}
+        {"I'm in!"}
       </button>
     );
   } else {
@@ -49,13 +50,19 @@ const ChallengeCard: React.FC<{
       <div className="flex flex-col w-full justify-start px-4 py-4">
         <div className="text-left text-base font-semibold">Challenge</div>
         <div className="text-left text-xs">{props.description}</div>
+        <div className="text-left text-xs">Duration: {props.duration} days</div>
       </div>
-      <div className="flex flex-row justify-between w-[90%] mt-auto border-[1px] border-gat-green rounded-md bg-green-100 px-4 py-2 text-base font-medium">
+      <div className="flex flex-row justify-between w-[90%] mt-auto border-[1px] border-gat-green rounded-md bg-green-100 px-4 py-1 text-base font-medium">
         <div className="text-left">Reward</div>
         <div className="text-right ml-auto">{props.reward}</div>
         <img src="/leaf.svg" className="pl-2" />
       </div>
-      {button}
+      <div className="flex flex-row justify-between w-[90%]">
+        <button className="border-[1px] border-gat-green w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2">
+          Details
+        </button>
+        {button}
+      </div>
     </div>
   );
 };
