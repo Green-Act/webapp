@@ -9,6 +9,7 @@ const challengeCards = ChallengeData.map((item) => (
     level={item.level}
     description={item.description}
     reward={item.reward}
+    duration={item.duration}
   />
 ));
 
