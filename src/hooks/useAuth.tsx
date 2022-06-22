@@ -1,12 +1,14 @@
 import React, { createContext, ReactNode, useContext } from "react";
 import { useConnectWallet } from "@web3-onboard/react";
 import getTrimmedHash from "../utils/getTrimmedHash";
+import { WalletState } from "@web3-onboard/core";
 
 interface AuthContextType {
   account: string;
   loading: boolean;
   error?: string;
   connect: () => unknown;
+  wallet: WalletState | null;
 }
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
@@ -26,6 +28,7 @@ export function AuthProvider({
   };
 
   const initialState: AuthContextType = {
+    wallet,
     account: getAccount(),
     loading: connecting,
     connect,
