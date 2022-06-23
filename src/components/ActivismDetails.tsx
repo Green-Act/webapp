@@ -47,7 +47,7 @@ const ActivismDetals: React.FC<Props> = ({ setShowDetails }) => {
 
   const getTransactions = async () => {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/api/plaid/transactions`
+      `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/plaid/transactions`
     );
 
     const plaidTransactions = response.data?.transactions;
