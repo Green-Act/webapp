@@ -37,6 +37,12 @@ export function initialize() {
         label: "Matic Mainnet",
         rpcUrl: "https://matic-mainnet.chainstacklabs.com",
       },
+      {
+        id: "0x13881",
+        token: "MATIC",
+        label: "Matic Mumbai",
+        rpcUrl: "https://matic-mumbai.chainstacklabs.com",
+      },
     ],
     appMetadata: {
       name: "GreenAct",
