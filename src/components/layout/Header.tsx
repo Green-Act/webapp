@@ -14,7 +14,7 @@ const Header: React.FC<Record<string, never>> = () => {
 
   return (
     <header className="flex flex-wrap items-center justify-between md:h-16 px-2 md:px-12 py-2 md:py-4 shadow-sm shadow-gat-green/10 relative z-1 text-xs w-full">
-      <img src="/logo.svg" className="h-8 order-1" />
+      <img src="/logo.svg" className="h-6 order-1" />
       <nav className="flex-1 w-full md:w-auto flex items-center justify-center order-3 md:order-2 mt-4 md:mt-0">
         <NavLink
           to="/"
