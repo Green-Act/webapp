@@ -37,7 +37,9 @@ const Home: React.FC<Record<string, never>> = () => {
       // exchange public token for an access token, which will
       // be stored securely on our server.
       await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api/plaid/exchange-token`,
+        `${
+          process.env.REACT_APP_SERVER_URL ?? "/api"
+        }/api/plaid/exchange-token`,
         {
           publicToken,
         }
