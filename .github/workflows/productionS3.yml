@@ -56,6 +56,20 @@ jobs:
         AWS_REGION: ${{ secrets.AWS_REGION }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Push to Pinata
+      uses: aquiladev/ipfs-action@v1
+      id: ipfs
+      with:
+        path: ./build
+        host: ipfs.komputing.org
+        port: 443
+        protocol: https
+        timeout: 180000
+        verbose: true
+        service: pinata
+        pinataKey: ${{ secrets.PINATA_KEY }}
+        pinataSecret: ${{ secrets.PINATA_SECRET }}
         
         
 ###        
