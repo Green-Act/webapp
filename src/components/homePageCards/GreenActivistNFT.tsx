@@ -19,13 +19,7 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
   const [userHasNFT, setUserHasNFT] = React.useState<boolean>(false);
   const [metadata, setMetadata] = React.useState<Record<string, any>>();
 
-  const fetchMetadata = async (tokenURI: string) => {
-    return await axios
-      .get(tokenURI.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
-      .then(({ data }) => data);
-  };
-
-  const getUserNFT = async (tokenId: string) => {
+  const getContract = () => {
     if (wallet) {
       const provider = new ethers.providers.Web3Provider(wallet?.provider);
       const signer = provider.getSigner();
@@ -34,6 +28,21 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
         ABI,
         signer
       );
+
+      return contract;
+    }
+    return null;
+  };
+
+  const fetchMetadata = async (tokenURI: string) => {
+    return await axios
+      .get(tokenURI.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"))
+      .then(({ data }) => data);
+  };
+
+  const getUserNFT = async (tokenId: string) => {
+    const contract = getContract();
+    if (contract) {
       const tokenURI = await contract.tokenURI(parseInt(tokenId));
       const metadata = await fetchMetadata(tokenURI);
       setMetadata(metadata);
@@ -45,24 +54,20 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
     if (wallet) {
       try {
         setCheckingOwnership(true);
-        const provider = new ethers.providers.Web3Provider(wallet?.provider);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(
-          "0x39b10aa1588C012B543E931FbE784311175Aa08F",
-          ABI,
-          signer
-        );
-        const userBalance = await contract.walletOfOwner(
-          wallet.accounts[0].address
-        );
-        const tokenIds = userBalance.map((balance: BigNumberish) =>
-          balance.toString()
-        );
-        if (tokenIds.length > 0) {
-          setUserHasNFT(true);
-          await getUserNFT(tokenIds[0]);
+        const contract = getContract();
+        if (contract) {
+          const userBalance = await contract.walletOfOwner(
+            wallet.accounts[0].address
+          );
+          const tokenIds = userBalance.map((balance: BigNumberish) =>
+            balance.toString()
+          );
+          if (tokenIds.length > 0) {
+            setUserHasNFT(true);
+            await getUserNFT(tokenIds[0]);
+          }
+          setUserOwnershipChecked(true);
         }
-        setUserOwnershipChecked(true);
       } catch (error) {
         console.error(error);
       } finally {
@@ -97,15 +102,11 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
   const mintNFT = React.useCallback(async () => {
     if (wallet) {
       try {
-        const provider = new ethers.providers.Web3Provider(wallet?.provider);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(
-          "0x39b10aa1588C012B543E931FbE784311175Aa08F",
-          ABI,
-          signer
-        );
-        const txn = await contract.mint(1);
-        await txn.wait();
+        const contract = getContract();
+        if (contract) {
+          const txn = await contract.mint(1);
+          await txn.wait();
+        }
       } catch (error) {
         console.error(error);
       } finally {
