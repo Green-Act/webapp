@@ -5,6 +5,8 @@ import axios from "axios";
 
 import ABI from "../../utils/NFTABI.json";
 
+const NFT_CONTRACT_ADDRESS = "0x5b13Ff48237A4C9a03c2F6f8f05D306988f4250B";
+
 const GreenActivistNFT: React.FC<Record<string, never>> = () => {
   const [{ wallet }, connect] = useConnectWallet();
   const [{ connectedChain }, setChain] = useSetChain(
@@ -23,11 +25,7 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
     if (wallet) {
       const provider = new ethers.providers.Web3Provider(wallet?.provider);
       const signer = provider.getSigner();
-      const contract = new ethers.Contract(
-        "0x39b10aa1588C012B543E931FbE784311175Aa08F",
-        ABI,
-        signer
-      );
+      const contract = new ethers.Contract(NFT_CONTRACT_ADDRESS, ABI, signer);
 
       return contract;
     }
