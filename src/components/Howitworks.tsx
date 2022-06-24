@@ -25,8 +25,8 @@ const Howitworks: React.FC<Record<string, never>> = () => {
       </p>
       <p className="text-sm">
         - The probability of winning the Reward pool is a function of: (1) the
-        MATICs that you had at stake for your completed challenges and (2) the
-        level of your NFT
+        MATIC that you put at stake for your completed challenges, (2) the level
+        of your NFT, (3) your total carbon footprint.
       </p>
       <br />
       <p className="font-bold text-lg">Stake to commit</p>

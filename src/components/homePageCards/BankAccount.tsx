@@ -81,6 +81,11 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
             GreenAct will not have access to your banking IDs, only your
             transactions to compute your carbon footprint.
           </p>
+
+          <p className="mt-3">
+            Your probability of winning the Reward Pool lottery is affected by
+            your carbon footprint.
+          </p>
         </div>
       </div>
       <button
