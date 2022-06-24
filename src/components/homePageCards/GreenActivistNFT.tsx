@@ -147,7 +147,7 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
       </h6>
       <div
         className={`relative my-4 ${
-          userHasNFT ? "h-[200px]" : "h-[130px]"
+          userHasNFT ? "h-[200px]" : "h-[200px]"
         } flex items-center justify-center`}
       >
         <img
@@ -159,7 +159,7 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
                 )
               : userHasNFT
               ? null
-              : "/activist.png"
+              : "/activist.jpg"
           }
           className="h-full"
         />

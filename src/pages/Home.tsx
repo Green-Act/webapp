@@ -19,9 +19,9 @@ const Home: React.FC<Record<string, never>> = () => {
         reduce it and <span className="text-gat-green">Earn</span>!
       </h1>
       <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-x-28 md:space-y-0">
-        <BankAccount setShow={setShowBankDetails} />
         <GreenActivistNFT />
         <GreenActions />
+        <BankAccount setShow={setShowBankDetails} />
       </div>
     </div>
   );
