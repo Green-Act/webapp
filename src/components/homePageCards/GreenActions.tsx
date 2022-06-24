@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const GreenActions: React.FC<Record<string, never>> = () => {
   const letsGreenAct = () => {
@@ -29,12 +30,12 @@ const GreenActions: React.FC<Record<string, never>> = () => {
           <p className="font-bold">Current week staking pool: 200 MATIC</p>
         </div>
       </div>
-      <button
-        className="border border-gat-green w-full py-1 rounded-full font-bold text-xs disabled:text-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed"
-        onClick={letsGreenAct}
+      <NavLink
+        className="border border-gat-green text-center w-full py-1 rounded-full font-bold text-xs disabled:text-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed"
+        to="../challenges"
       >
         Let&apos;s GreenAct
-      </button>
+      </NavLink>
     </div>
   );
 };
