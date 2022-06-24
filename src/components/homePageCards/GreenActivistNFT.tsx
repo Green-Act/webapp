@@ -170,7 +170,7 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
       </div>
       <div className="flex-1">
         <div className="text-xs text-center">
-          <p>Mint your GreenActivist to start playing the game.</p>
+          <p>Get your GreenActivist NFT to start playing the game.</p>
 
           <p className="mt-3">
             Your GreenActivist is unique and belongs only to you. It is the
