@@ -53,16 +53,13 @@ const ChallengeCard: React.FC<{
         <div className="text-left text-xs">Duration: {props.duration} days</div>
       </div>
       <div className="flex flex-row justify-between w-[90%] mt-auto border-[1px] border-gat-green rounded-md bg-green-100 px-4 py-1 text-base font-medium">
-        <div className="text-left">Reward</div>
+        <div className="text-left">Stake</div>
         <div className="text-right ml-auto">{props.reward}</div>
-        <img src="/leaf.svg" className="pl-2" />
+        <img src="/polygon.svg" className="pl-2" />
       </div>
-      <div className="flex flex-row justify-between w-[90%]">
-        <button className="border-[1px] border-gat-green w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2">
-          Details
-        </button>
-        {button}
-      </div>
+      <button className="border-[1px] border-gat-green w-[100px] py-1 rounded-full font-bold text-xs my-2">
+        Details
+      </button>
     </div>
   );
 };
