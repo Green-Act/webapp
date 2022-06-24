@@ -25,7 +25,7 @@ const GreenActions: React.FC<Record<string, never>> = () => {
           </div>
           <br />
           <p>
-            The more challenges you take on, and the harder they are, the bigger
+            The more challenges you take on, and the harder they are, the higher
             your chances to win the prize!
           </p>
           <br />
