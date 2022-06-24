@@ -4,6 +4,8 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import Challenges from "./pages/Challenges";
+import ChallengeDetails from "./pages/ChallengeDetails";
+
 import { AuthProvider } from "./hooks/useAuth";
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/challenges" element={<Challenges />} />
+            <Route path="/challengedetails" element={<ChallengeDetails />} />
           </Routes>
           <Footer />
         </main>

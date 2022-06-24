@@ -88,7 +88,7 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
         onClick={connected ? () => setShow(true) : connectBankAccount}
         disabled={!ready}
       >
-        {connected ? "Details" : "Connect Bank Account"}
+        {connected ? "Details" : "Connect Banking Data"}
       </button>
     </div>
   );

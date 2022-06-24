@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useConnectWallet } from "@web3-onboard/react";
+import { NavLink } from "react-router-dom";
 
 const ChallengeCard: React.FC<{
   key: string;
@@ -20,26 +21,26 @@ const ChallengeCard: React.FC<{
     );
   };
 
-  let button;
-  if (wallet) {
-    button = (
-      <button
-        className="border-[1px] border-gat-green w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2"
-        onClick={() => getReward()}
-      >
-        {"I'm in!"}
-      </button>
-    );
-  } else {
-    button = (
-      <button
-        className="border-0 w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2"
-        disabled
-      >
-        Not Connected
-      </button>
-    );
-  }
+  // let button;
+  // if (wallet) {
+  //   button = (
+  //     <button
+  //       className="border-[1px] border-gat-green w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2"
+  //       onClick={() => getReward()}
+  //     >
+  //       {"I'm in!"}
+  //     </button>
+  //   );
+  // } else {
+  //   button = (
+  //     <button
+  //       className="border-0 w-[100px] py-1 rounded-full font-bold text-xs mb-2 my-2"
+  //       disabled
+  //     >
+  //       Not Connected
+  //     </button>
+  //   );
+  // }
 
   return (
     <div className="flex flex-col items-center justify-between rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 mx-8 my-4 h-[240px] w-[240px]">
@@ -57,9 +58,14 @@ const ChallengeCard: React.FC<{
         <div className="text-right ml-auto">{props.reward}</div>
         <img src="/polygon.svg" className="pl-2" />
       </div>
-      <button className="border-[1px] border-gat-green w-[100px] py-1 rounded-full font-bold text-xs my-2">
+      <NavLink
+        className="border-[1px] border-gat-green w-[100px] py-1 rounded-full font-bold text-xs my-2 text-center"
+        to={{
+          pathname: "/challengedetails",
+        }}
+      >
         Details
-      </button>
+      </NavLink>
     </div>
   );
 };

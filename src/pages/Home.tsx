@@ -1,9 +1,7 @@
 import React from "react";
-
 import BankAccount from "../components/homePageCards/BankAccount";
 import GreenActions from "../components/homePageCards/GreenActions";
 import GreenActivistNFT from "../components/homePageCards/GreenActivistNFT";
-
 import ActivismDetails from "../components/ActivismDetails";
 
 const Home: React.FC<Record<string, never>> = () => {
