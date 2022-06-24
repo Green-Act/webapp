@@ -68,6 +68,8 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
       <img src="/activism.png" className="h-[130px] my-4" />
       <div className="flex-1">
         <div className="text-xs text-center">
+          <p className="font-bold">This could be your first GreenAction!</p>
+          <br />
           <p>
             In order to precisely estimate your carbon footprint and play the
             game to earn, you are invited to connect GreenAct to your bank
