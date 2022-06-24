@@ -5,7 +5,7 @@ const GreenActions: React.FC<Record<string, never>> = () => {
     console.log("Let's greenact");
   };
   return (
-    <div className="flex flex-col items-center rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-full md:w-1/3 md:max-w-[300px] px-12 py-5">
+    <div className="flex flex-col items-center rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-full md:w-1/3 md:max-w-[300px] px-5 py-5">
       <h6 className="font-bold text-xl">
         My Green<span className="text-gat-green">Actions</span>
       </h6>
@@ -13,11 +13,20 @@ const GreenActions: React.FC<Record<string, never>> = () => {
       <div className="flex-1">
         <div className="text-xs text-center">
           <p>
-            If you’ve already safely connected your bank accounts to GreenAct
-            and chosen your GreenActivist, you can start playing!{" "}
+            By commiting to weekly GreenActions, you put some MATICs at stake
+            (locked for a week).{" "}
+          </p>{" "}
+          <br />
+          <p>
+            If you complete your GreenActions, you get your staked MATICs back
+            and get a chance to win the weekly lottery.{" "}
           </p>
-
-          <p className="mt-3">Complete GreenActions to earn tokens!</p>
+          <p>
+            If you don’t complete your GreenActions, you loose your MATICs
+            staked, which fall into the weekly lottery.{" "}
+          </p>{" "}
+          <br />
+          <p className="font-bold">Current week staking pool: 200 MATIC</p>
         </div>
       </div>
       <button
