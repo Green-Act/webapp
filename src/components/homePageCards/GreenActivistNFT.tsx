@@ -177,8 +177,8 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
             online reflection of your real life sustainable actions.
           </p>
           <p className="mt-3">
-            You’ll be able to share it on your favorite social networks to show
-            your community your involvement in saving our planet
+            The level of your GreenActivist impacts your probability of winning
+            the Reward Pool lottery.
           </p>
         </div>
       </div>
