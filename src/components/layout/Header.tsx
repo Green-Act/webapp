@@ -34,9 +34,9 @@ const Header: React.FC<Record<string, never>> = () => {
             } rounded-full py-2 w-28 text-center font-bold mx-2`
           }
         >
-          Challenges
+          GreenActions
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/marketplace"
           className={({ isActive }) =>
             `${
@@ -45,7 +45,7 @@ const Header: React.FC<Record<string, never>> = () => {
           }
         >
           Marketplace
-        </NavLink>
+        </NavLink> */}
       </nav>
       <button
         className="border border-gat-green px-6 md:px-12 py-2 rounded-full font-bold order-2 md:order-3"
