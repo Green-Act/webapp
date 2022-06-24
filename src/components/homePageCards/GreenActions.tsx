@@ -14,20 +14,21 @@ const GreenActions: React.FC<Record<string, never>> = () => {
       <div className="flex-1">
         <div className="text-xs text-center">
           <p>
-            By commiting to weekly GreenActions, you put some MATICs at stake
-            (locked for a week).{" "}
+            Complete weekly GreenActions and get a chance to win the Reward
+            Pool!{" "}
           </p>{" "}
           <br />
+          <div className="flex flex-row justify-between w-full mt-auto border-[1px] border-gat-green rounded-md bg-green-100 px-4 py-1 text-s font-medium">
+            <div className="text-left">This week Reward Pool</div>
+            <div className="text-right ml-auto">200</div>
+            <img src="/polygon.svg" className="pl-2 h-4" />
+          </div>
+          <br />
           <p>
-            If you complete your GreenActions, you get your staked MATICs back
-            and get a chance to win the weekly lottery.{" "}
+            The more challenges you take on, and the harder they are, the bigger
+            your chances to win the prize!
           </p>
-          <p>
-            If you don’t complete your GreenActions, you loose your MATICs
-            staked, which fall into the weekly lottery.{" "}
-          </p>{" "}
           <br />
-          <p className="font-bold">Current week staking pool: 200 MATIC</p>
         </div>
       </div>
       <NavLink
