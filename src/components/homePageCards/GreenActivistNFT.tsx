@@ -162,40 +162,38 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
             <div className="absolute m-auto z-10 animate-spin h-10 w-10 border-l-4 border-black rounded-full"></div>
           )}
           {userHasNFT && metadata && (
-            <div className="absolute -bottom-3 z-1 h-8 rounded-2xl flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-sm bg-white">
+            <div className="absolute -bottom-3 z-1 h-5 rounded-2xl flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-xs bg-white">
               #{metadata.edition}
             </div>
           )}
         </div>
-        <div className="my-2 w-full text-sm space-y-2">
+        <div className="my-2 px-2 w-full text-xs font-bold space-y-2">
           <div className="flex items-center justify-between w-full">
             <span>Level</span>{" "}
-            <span className="rounded-2xl flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-sm bg-white w-12">
+            <span className="rounded-2xl h-5  flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-xs bg-white w-12">
               {metadata?.Level}
             </span>
           </div>
           <div className="flex items-center justify-between w-full">
             <span>GreenActions</span>{" "}
-            <span className="rounded-2xl flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-sm bg-white w-12">
+            <span className="rounded-2xl  h-5 flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-xs bg-white w-12">
               {metadata?.GreenActions}
             </span>
           </div>
           <div className="flex items-center justify-between w-full">
             <span>CO2 Saved</span>{" "}
-            <span className="rounded-2xl flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-sm bg-white w-12">
+            <span className="rounded-2xl h-5  flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-xs bg-white w-12">
               {metadata?.CO2_saved}
             </span>
           </div>
         </div>
         <div className="flex-1">
           <div className="text-xs text-center">
-            <p>Congrats, your GreenActivist and you are now bond for life!</p>
-
             <p className="mt-3">
-              Level up your GreenActivist to unlock skins, and share your most
-              exceptional GreenActivist on your social networks to start the
-              movement!
+              Level up your GreenActivist to increase your chances of winning
+              the Reward pool!
             </p>
+            <p> Level up feature not available</p>
           </div>
         </div>
         <button
