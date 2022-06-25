@@ -190,8 +190,8 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
         <div className="flex-1">
           <div className="text-xs text-center">
             <p className="mt-3">
-              Level up your GreenActivist to increase your chances of winning
-              the Reward pool!
+              Level up your GreenActivist by spending your GreenAct tokens to
+              increase your chances of winning the Reward pool!
             </p>
             <p> Level up feature not available</p>
           </div>
