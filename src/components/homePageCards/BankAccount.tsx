@@ -1,6 +1,7 @@
 import React from "react";
 import { usePlaidLink } from "react-plaid-link";
 import axios from "axios";
+import { useConnectWallet } from "@web3-onboard/react";
 
 type TransactionCard = {
   date: string;
@@ -28,6 +29,7 @@ const getEmissionsTotal = (transactions: TransactionCard[]): number => {
 };
 
 const BankAccount: React.FC<Props> = ({ setShow }) => {
+  const [{ wallet }, connect] = useConnectWallet();
   // Get link token, this verifies our account credentials,
   // the user must go through their own authentication process
   const [linkToken, setLinkToken] = React.useState<string>("");
@@ -37,8 +39,6 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
   const [display, setDisplay] = React.useState<boolean>(false);
 
   const [transactions, setTransactions] = React.useState<TransactionCard[]>([]);
-  const [isAccountConnected, setIsAccountConnected] =
-    React.useState<boolean>(false);
 
   const getLinkToken = async () => {
     const response = await axios.get(
@@ -88,7 +88,7 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
   React.useEffect(() => {
     const linkToken = localStorage.getItem("link-token");
     if (linkToken) {
-      setIsAccountConnected(true);
+      setConnected(true);
       getTransactions();
     } else {
       getLinkToken();
@@ -118,12 +118,13 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
 
   const { open, ready } = usePlaidLink(config);
 
-  const connectBankAccount = () => {
+  const connectBankAccount = async () => {
+    connect({});
     console.log("connecting bank account...");
     open();
   };
 
-  if (isAccountConnected) {
+  if (connected && wallet) {
     return (
       <div className="flex flex-col items-center rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-full md:w-1/3 md:max-w-[300px] px-5 py-5">
         <h6 className="font-bold text-xl">
@@ -164,8 +165,7 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
         </div>
         <button
           className="border border-gat-green w-full py-1 rounded-full font-bold text-xs disabled:text-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed"
-          onClick={connected ? () => setShow(true) : connectBankAccount}
-          disabled={!ready}
+          disabled
         >
           Offset
         </button>

@@ -4,7 +4,6 @@ import { BigNumberish, ethers } from "ethers";
 import axios from "axios";
 
 import ABI from "../../utils/NFTABI.json";
-import { Link } from "react-router-dom";
 
 const NFT_CONTRACT_ADDRESS = "0x5b13Ff48237A4C9a03c2F6f8f05D306988f4250B";
 
@@ -163,7 +162,7 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
             <div className="absolute m-auto z-10 animate-spin h-10 w-10 border-l-4 border-black rounded-full"></div>
           )}
           {userHasNFT && metadata && (
-            <div className="absolute -bottom-3 z-10 h-8 rounded-2xl flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-sm bg-white">
+            <div className="absolute -bottom-3 z-1 h-8 rounded-2xl flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-sm bg-white">
               #{metadata.edition}
             </div>
           )}
@@ -199,13 +198,12 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
             </p>
           </div>
         </div>
-        <Link
-          to="/challenges"
-          className="flex items-center justify-center border border-gat-green w-full py-1 rounded-full font-bold text-xs"
-          onClick={mintGreenActivist}
+        <button
+          className="flex items-center justify-center border border-gat-green w-full py-1 rounded-full font-bold text-xs disabled:text-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed"
+          disabled
         >
           Level up
-        </Link>
+        </button>
       </div>
     );
   }
