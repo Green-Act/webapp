@@ -148,19 +148,16 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
               </button>
             </div>
             <p>
-              According to [Country] commitments in Paris Agreements, the
-              individual carbon footprint target is set to: 700kg CO2eq
+              According to your country commitments in Paris Agreements, your
+              individual 30 days carbon footprint target is set to: 700kg CO2eq
             </p>
 
             <p className="mt-3">
-              In order to earn tokens, your carbon footprint needs to be +20%
-              above the target (840kg) maximum.
+              You are currently above the target, which affects your probability
+              of winning the Reward pool. Offset by burning GreenAct tokens to
+              increase your chances of winning.
             </p>
-
-            <p className="mt-3">
-              You can whether start playing and improve your carbon footprint
-              without earning or offset your footprint to start earning now.
-            </p>
+            <p>Offset feature not available.</p>
           </div>
         </div>
         <button
