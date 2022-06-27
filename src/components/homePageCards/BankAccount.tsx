@@ -1,6 +1,7 @@
 import React from "react";
 import { usePlaidLink } from "react-plaid-link";
 import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 import { useConnectWallet } from "@web3-onboard/react";
 
 type TransactionCard = {
@@ -29,14 +30,12 @@ const getEmissionsTotal = (transactions: TransactionCard[]): number => {
 };
 
 const BankAccount: React.FC<Props> = ({ setShow }) => {
-  const [{ wallet }, connect] = useConnectWallet();
   // Get link token, this verifies our account credentials,
   // the user must go through their own authentication process
   const [linkToken, setLinkToken] = React.useState<string>("");
   // bank account connected state
-  const [connected, setConnected] = React.useState<boolean>(false);
-  // control bank account details popup
-  const [display, setDisplay] = React.useState<boolean>(false);
+  const { bankConnected, getAccessToken, exchangeToken } = useAuth();
+  const [{ wallet }, connect] = useConnectWallet();
 
   const [transactions, setTransactions] = React.useState<TransactionCard[]>([]);
 
@@ -44,11 +43,8 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/plaid/create-link`
     );
-    // setting link token in local storage for now, so we can use
-    // in list transactions component.
-    // TODO: move into our global app state, once that is setup?
+
     const token = response.data.link_token;
-    localStorage.setItem("link-token", token);
     setLinkToken(token);
   };
 
@@ -70,7 +66,9 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
 
   const getTransactions = async () => {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/plaid/transactions`
+      `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/plaid/transactions/${
+        wallet?.accounts[0].address
+      }`
     );
 
     const plaidTransactions = response.data?.transactions;
@@ -86,45 +84,31 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
   };
 
   React.useEffect(() => {
-    const linkToken = localStorage.getItem("link-token");
-    if (linkToken) {
-      setConnected(true);
-      getTransactions();
-    } else {
-      getLinkToken();
-    }
+    getLinkToken();
+    getTransactions();
   }, []);
 
   const config = {
     token: linkToken,
-    onSuccess: async (publicToken: string) => {
-      // exchange public token for an access token, which will
-      // be stored securely on our server.
-      const response = await axios.post(
-        `${
-          process.env.REACT_APP_SERVER_URL ?? "/api"
-        }/api/plaid/exchange-token`,
-        {
-          publicToken,
-        }
-      );
-
-      const success = 201;
-      if (response.status === success) {
-        setConnected(true);
-      }
-    },
+    onSuccess: (publicToken: string) => exchangeToken(publicToken),
   };
 
   const { open, ready } = usePlaidLink(config);
 
-  const connectBankAccount = async () => {
+  const connectBankAccount = () => {
     connect({});
-    console.log("connecting bank account...");
     open();
   };
 
-  if (connected && wallet) {
+  /*
+    If plaid is in a ready state and the bankaccount has not been connected
+    check our server if we have the accesstoken stored in db.
+  */
+  if (ready && !bankConnected) {
+    getAccessToken();
+  }
+
+  if (bankConnected && wallet) {
     return (
       <div className="flex flex-col items-center rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-full md:w-1/3 md:max-w-[300px] px-5 py-5">
         <h6 className="font-bold text-xl">
@@ -200,10 +184,10 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
       </div>
       <button
         className="border border-gat-green w-full py-1 rounded-full font-bold text-xs disabled:text-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed"
-        onClick={connected ? () => setShow(true) : connectBankAccount}
+        onClick={bankConnected ? () => setShow(true) : connectBankAccount}
         disabled={!ready}
       >
-        {connected ? "Details" : "Connect Banking Data"}
+        {bankConnected ? "Details" : "Connect Banking Data"}
       </button>
     </div>
   );
