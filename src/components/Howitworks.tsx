@@ -24,7 +24,7 @@ const Howitworks: React.FC<Record<string, never>> = () => {
         Those GreenAct tokens allow you to level up your GreenActivist NFT.
       </p>
       <p className="text-xs">
-        - Completing challenges makes you elligible to win the weekly Reward
+        - Completing challenges makes you eligible to win the weekly Reward
         Pool.
       </p>
       <p className="text-xs">
