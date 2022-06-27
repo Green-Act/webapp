@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useConnectWallet } from "@web3-onboard/react";
 
 type TransactionCard = {
   date: string;
@@ -43,11 +44,14 @@ const createTransactionArray = (
 };
 
 const ActivismDetals: React.FC<Props> = ({ setShowDetails }) => {
+  const [{ wallet }] = useConnectWallet();
   const [transactions, setTransactions] = useState<TransactionCard[]>([]);
 
   const getTransactions = async () => {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/plaid/transactions`
+      `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/plaid/transactions/${
+        wallet?.accounts[0].address
+      }`
     );
 
     const plaidTransactions = response.data?.transactions;
