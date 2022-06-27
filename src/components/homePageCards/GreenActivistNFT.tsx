@@ -140,7 +140,7 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
     }
   };
 
-  if (userHasNFT) {
+  if (userHasNFT && wallet) {
     return (
       <div className="flex flex-col items-center rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-full md:w-1/3 md:max-w-[300px] px-5 py-5">
         <h6 className="font-bold text-xl">
