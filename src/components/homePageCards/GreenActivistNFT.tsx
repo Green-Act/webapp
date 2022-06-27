@@ -140,33 +140,84 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
     }
   };
 
+  if (userHasNFT) {
+    return (
+      <div className="flex flex-col items-center rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-full md:w-1/3 md:max-w-[300px] px-5 py-5">
+        <h6 className="font-bold text-xl">
+          My Green<span className="text-gat-green">Activist</span>
+        </h6>
+        <div className="relative my-4 h-[150px] flex items-center justify-center">
+          <img
+            src={
+              metadata
+                ? metadata.image.replace(
+                    "ipfs://",
+                    "https://gateway.pinata.cloud/ipfs/"
+                  )
+                : null
+            }
+            className="h-full"
+          />
+          {userHasNFT && !metadata && (
+            <div className="absolute m-auto z-10 animate-spin h-10 w-10 border-l-4 border-black rounded-full"></div>
+          )}
+          {userHasNFT && metadata && (
+            <div className="absolute -bottom-3 z-1 h-5 rounded-2xl flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-xs bg-white">
+              #{metadata.edition}
+            </div>
+          )}
+        </div>
+        <div className="my-2 px-2 w-full text-xs font-bold space-y-2">
+          <div className="flex items-center justify-between w-full">
+            <span>Level</span>{" "}
+            <span className="rounded-2xl h-5  flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-xs bg-white w-12">
+              {metadata?.Level}
+            </span>
+          </div>
+          <div className="flex items-center justify-between w-full">
+            <span>GreenActions</span>{" "}
+            <span className="rounded-2xl  h-5 flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-xs bg-white w-12">
+              {metadata?.GreenActions}
+            </span>
+          </div>
+          <div className="flex items-center justify-between w-full">
+            <span>CO2 Saved</span>{" "}
+            <span className="rounded-2xl h-5  flex items-center justify-center border border-gat-green px-12 py-1 font-bold text-xs bg-white w-12">
+              {metadata?.CO2_saved}
+            </span>
+          </div>
+        </div>
+        <div className="flex-1">
+          <div className="text-xs text-center">
+            <p className="mt-3">
+              Level up your GreenActivist by spending your GreenAct tokens to
+              increase your chances of winning the Reward pool!
+            </p>
+            <p> Level up feature not available</p>
+          </div>
+        </div>
+        <button
+          className="flex items-center justify-center border border-gat-green w-full py-1 rounded-full font-bold text-xs disabled:text-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed"
+          disabled
+        >
+          Level up
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center rounded-xl bg-white border border-gat-green shadow-md shadow-black/20 h-[500px] w-full md:w-1/3 md:max-w-[300px] px-5 py-5">
       <h6 className="font-bold text-xl">
         My Green<span className="text-gat-green">Activist</span>
       </h6>
       <div
-        className={`relative my-4 ${
-          userHasNFT ? "h-[200px]" : "h-[200px]"
-        } flex items-center justify-center`}
+        className={`relative my-4 h-[200px] flex items-center justify-center`}
       >
-        <img
-          src={
-            metadata
-              ? metadata.image.replace(
-                  "ipfs://",
-                  "https://gateway.pinata.cloud/ipfs/"
-                )
-              : userHasNFT
-              ? null
-              : "/activist.jpg"
-          }
-          className="h-full"
-        />
-        {checkingOwnership ||
-          (userHasNFT && !metadata && (
-            <div className="absolute m-auto z-10 animate-spin h-10 w-10 border-l-4 border-white rounded-full"></div>
-          ))}
+        <img src={"/activist.jpg"} className="h-full" />
+        {checkingOwnership && (
+          <div className="absolute m-auto z-10 animate-spin h-10 w-10 border-l-4 border-black rounded-full"></div>
+        )}
       </div>
       <div className="flex-1">
         <div className="text-xs text-center">
@@ -182,14 +233,12 @@ const GreenActivistNFT: React.FC<Record<string, never>> = () => {
           </p>
         </div>
       </div>
-      {!userHasNFT && (
-        <button
-          className="border border-gat-green w-full py-1 rounded-full font-bold text-xs"
-          onClick={mintGreenActivist}
-        >
-          {isMinting ? "Minting..." : "Mint my GreenActivist"}
-        </button>
-      )}
+      <button
+        className="border border-gat-green w-full py-1 rounded-full font-bold text-xs"
+        onClick={mintGreenActivist}
+      >
+        {isMinting ? "Minting..." : "Mint my GreenActivist"}
+      </button>
     </div>
   );
 };

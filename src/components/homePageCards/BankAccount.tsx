@@ -3,7 +3,6 @@ import { usePlaidLink } from "react-plaid-link";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { useConnectWallet } from "@web3-onboard/react";
-import {} from "../ActivismDetails";
 
 type TransactionCard = {
   date: string;
@@ -18,6 +17,10 @@ interface Transaction {
   merchant_name: string;
 }
 
+type Props = {
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
 const getEmissions = (): number => Math.floor(Math.random() * 20);
 
 const getEmissionsTotal = (transactions: TransactionCard[]): number => {
@@ -26,17 +29,16 @@ const getEmissionsTotal = (transactions: TransactionCard[]): number => {
   return total;
 };
 
-type Props = {
-  setShow: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
 const BankAccount: React.FC<Props> = ({ setShow }) => {
+  const [{ wallet }, connect] = useConnectWallet();
   // Get link token, this verifies our account credentials,
   // the user must go through their own authentication process
   const [linkToken, setLinkToken] = React.useState<string>("");
   // bank account connected state
   const { bankConnected, getAccessToken, exchangeToken } = useAuth();
   const [{ wallet }, connect] = useConnectWallet();
+
+  const [transactions, setTransactions] = React.useState<TransactionCard[]>([]);
 
   const [transactions, setTransactions] = React.useState<TransactionCard[]>([]);
 
@@ -83,7 +85,13 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
   };
 
   React.useEffect(() => {
-    getLinkToken();
+    const linkToken = localStorage.getItem("link-token");
+    if (linkToken) {
+      setConnected(true);
+      getTransactions();
+    } else {
+      getLinkToken();
+    }
   }, []);
 
   const config = {
@@ -92,6 +100,7 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
   };
 
   const { open, ready } = usePlaidLink(config);
+
 
   const connectBankAccount = () => {
     connect({});
