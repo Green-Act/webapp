@@ -30,15 +30,12 @@ const getEmissionsTotal = (transactions: TransactionCard[]): number => {
 };
 
 const BankAccount: React.FC<Props> = ({ setShow }) => {
-  const [{ wallet }, connect] = useConnectWallet();
   // Get link token, this verifies our account credentials,
   // the user must go through their own authentication process
   const [linkToken, setLinkToken] = React.useState<string>("");
   // bank account connected state
   const { bankConnected, getAccessToken, exchangeToken } = useAuth();
   const [{ wallet }, connect] = useConnectWallet();
-
-  const [transactions, setTransactions] = React.useState<TransactionCard[]>([]);
 
   const [transactions, setTransactions] = React.useState<TransactionCard[]>([]);
 
@@ -69,7 +66,9 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
 
   const getTransactions = async () => {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/plaid/transactions`
+      `${process.env.REACT_APP_SERVER_URL ?? "/api"}/api/plaid/transactions/${
+        wallet?.accounts[0].address
+      }`
     );
 
     const plaidTransactions = response.data?.transactions;
@@ -85,13 +84,8 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
   };
 
   React.useEffect(() => {
-    const linkToken = localStorage.getItem("link-token");
-    if (linkToken) {
-      setConnected(true);
-      getTransactions();
-    } else {
-      getLinkToken();
-    }
+    getLinkToken();
+    getTransactions();
   }, []);
 
   const config = {
@@ -100,7 +94,6 @@ const BankAccount: React.FC<Props> = ({ setShow }) => {
   };
 
   const { open, ready } = usePlaidLink(config);
-
 
   const connectBankAccount = () => {
     connect({});
